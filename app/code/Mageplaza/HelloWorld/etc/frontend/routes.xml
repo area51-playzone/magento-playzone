@@ -4,5 +4,8 @@
         <route frontName="helloworld" id="helloworld">
             <module name="Mageplaza_HelloWorld"/>
         </route>
+        <route id="mageplaza" frontName="hello">
+             <module name="Mageplaza_HelloWorld" before="Magento_Customer" />
+        </route>
     </router>
 </config>
