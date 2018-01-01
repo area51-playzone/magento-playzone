@@ -3,7 +3,7 @@ namespace Mageplaza\HelloWorld\Block;
 class Topic extends \Magento\Framework\View\Element\Template
 {
 	protected $_topicFactory;
-	public function _construct(
+	public function __construct(
 		\Magento\Framework\View\Element\Template\Context $context,
 		\Mageplaza\HelloWorld\Model\TopicFactory $topicFactory
 	){

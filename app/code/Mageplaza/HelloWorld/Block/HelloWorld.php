@@ -1,51 +1,27 @@
 <?php
 namespace Mageplaza\HelloWorld\Block;
 class HelloWorld extends \Magento\Framework\View\Element\Template
-{    
-    protected $_productRepository;
-    protected $_productImageHelper;
-        
+{
+    protected $_logo;   
+    
     public function __construct(
-        \Magento\Backend\Block\Template\Context $context,        
-        \Magento\Catalog\Model\ProductRepository $productRepository,
-        \Magento\Catalog\Helper\Image $productImageHelper,
+        \Magento\Backend\Block\Template\Context $context,
+        \Magento\Theme\Block\Html\Header\Logo $logo,
         array $data = []
     )
-    {
-        $this->_productRepository = $productRepository;
-        $this->_productImageHelper = $productImageHelper;
+    {       
+        $this->_logo = $logo;
         parent::__construct($context, $data);
     }
     
-    public function getProductById($id)
-    {
-        return $this->_productRepository->getById($id);
-    }
-    
-    public function getProductBySku($sku)
-    {
-        return $this->_productRepository->get($sku);
-    }
-    
     /**
-     * Schedule resize of the image
-     * $width *or* $height can be null - in this case, lacking dimension will be calculated.
+     * Check if current url is url for home page
      *
-     * @see \Magento\Catalog\Model\Product\Image
-     * @param int $width
-     * @param int $height
-     * @return $this
+     * @return bool
      */
-    public function resizeImage($product, $imageId, $width, $height = null)
-    {
-        $resizedImage = $this->_productImageHelper
-                           ->init($product, $imageId)
-                           ->constrainOnly(TRUE)
-                           ->keepAspectRatio(TRUE)
-                           ->keepTransparency(TRUE)
-                           ->keepFrame(FALSE)
-                           ->resize($width, $height);
-        return $resizedImage;
-    }    
+    public function isHomePage()
+    {   
+        return $this->_logo->isHomePage();
+    }
 }
 ?>

@@ -1,1 +1,7 @@
+<?php 
+	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+	$helloWorldBlock = $objectManager->get('Mageplaza\HelloWorld\Block\HelloWorld');
+	
+?>
 <h2>Welcome to DigiRed Robi-shop</h2>
+<h2>I am from another block::HelloWorldBlock -> <?php var_dump($helloWorldBlock->isHomePage());?></h2>
